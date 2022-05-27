@@ -1,6 +1,23 @@
-<app-header>
+<app-header [start]="start">
 </app-header>
+
 <div class="container py-4">
-    <router-outlet></router-outlet>
+    <div *ngIf="start; then trueBlock; else falseBlock"></div>
+    <ng-template #falseBlock>
+        <app-instructions #instructions [startfun]="startTest" *ngIf="!start"></app-instructions>
+    </ng-template>
+    <ng-template #trueBlock>
+        <div #q>
+            <p>test works!</p>
+            <button type="button" class="btn btn-primary">End</button>
+            <!-- .alert-primary, .alert-secondary, .alert-success, .alert-danger, .alert-warning, .alert-info, .alert-light, .alert-dark -->
+
+        </div>
+    </ng-template>
+
+
+
+
+
 </div>
 <app-footer></app-footer>

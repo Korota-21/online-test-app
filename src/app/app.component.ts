@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'online-test-app';
+  text = "HI"
+  start = false;
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  startTest=():void=>{
+    this.start=true;
+  }
 }

@@ -10,7 +10,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 export class TimerComponent implements OnInit, OnDestroy {
   countDown!: Subscription;
   teststart = false;
-  counter = 10;
+  counter = 600;
   tick = 1000;
   constructor() {
 
