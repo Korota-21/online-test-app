@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { timer, Subscription } from "rxjs";
 import { Pipe, PipeTransform } from "@angular/core";
 
@@ -8,21 +8,25 @@ import { Pipe, PipeTransform } from "@angular/core";
   styleUrls: ['./timer.component.css']
 })
 export class TimerComponent implements OnInit, OnDestroy {
+  @Input() endFun!: () => void;
+
   countDown!: Subscription;
   teststart = false;
   counter = 600;
   tick = 1000;
+
   constructor() {
 
   }
 
   ngOnInit(): void {
-    this.countDown = timer(0, this.tick).subscribe(() => this.counterF());
+    this.countDown = timer(0, this.tick).subscribe(() => this.count());
 
   }
-  counterF() {
-    --this.counter
-    console.log(this.counter);
+  count() {
+    this.counter--
+    if(this.counter<0)
+    this.endFun();
 
   }
   ngOnDestroy() {
