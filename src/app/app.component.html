@@ -5,10 +5,10 @@
     <div>
         <div *ngIf="start; then testBlock; else instructionsBlock"></div>
         <ng-template #instructionsBlock>
-            <app-instructions #instructions [startfun]="startTest" *ngIf="!start"></app-instructions>
+            <app-instructions #instructions [questionNum]="questions.length" [startfun]="startTest" *ngIf="!start&&!finish"></app-instructions>
         </ng-template>
         <ng-template #testBlock>
-            <form #myForm="ngForm" novalidate>
+            <form>
 
                 <div>
                     <h2>Q{{currentQ+1}}- {{questions[currentQ].question}}</h2>
@@ -38,9 +38,9 @@
                     </div>
                     <div class="container-fluid">
                         <div class="row row-cols-auto">
-                            <div class="col"> <button *ngIf="currentQ<9" (click)="next()" class="btn btn-primary">Next</button>
+                            <div class="col"> <button *ngIf="currentQ<questions.length-1" (click)="next()" class="btn btn-primary">Next</button>
                             </div>
-                            <div class="col"> <button *ngIf="currentQ==9" type="button" (click)="endTest()" class="btn btn-dark">Finish</button>
+                            <div class="col"> <button *ngIf="currentQ==questions.length-1" type="button" (click)="endTest()" class="btn btn-dark">Finish</button>
                             </div>
                             <div class="col"> <button *ngIf="currentQ>0" (click)="previous()" class="btn btn-secondary">Previous</button>
                             </div>
@@ -53,6 +53,12 @@
                 </div>
             </form>
         </ng-template>
+    </div>
+    <div *ngIf="finish">
+        <h1>Result</h1>
+        <p>
+            {{userData.name}} You got <span class="">{{result}}</span> of<span> {{questions.length}}</span> points.
+        </p>
     </div>
 
 </div>

@@ -1,5 +1,4 @@
-import { Component, ElementRef, Input, VERSION, ViewChild, ViewChildren } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
 import { IQuestion, Test } from './Test';
 
 
@@ -11,34 +10,58 @@ import { IQuestion, Test } from './Test';
 export class AppComponent {
   title = 'online-test-app';
   start = false;
+  finish = false;
   currentQ = 0;
-  questions: IQuestion[] = []
-  userAnswers: number[] = new Array(10);
-
   currentA: any = ""
+  questions: IQuestion[] = []
+  userAnswers: number[] = [];
+  result: number = 0
+  userData: IUserData = {
+    name: "",
+    email: ""
+  }
   constructor() {
-  }
-  ngOnInit(): void {
-    this.startTest()
-  }
-  startTest = (): void => {
-    this.start = true;
     let test = new Test();
     this.questions = test.getQuestions();
   }
+  ngOnInit(): void {
+    // this.startTest()
+    // this.endTest(true)
+  }
+  Getresult() {
+    let result = 0;
+    for (let i = 0; i < this.questions.length; i++)
+      if (this.questions[i].rAnswer == this.userAnswers[i])
+        result++
+    this.result = result;
+  }
+  startTest = (name: string, email: string): void => {
+    this.start = true;
 
-  endTest = (): void => {
+    this.userAnswers = new Array(this.questions.length);
+    this.userData.name = name
+    this.userData.email = email
+  }
+
+  endTest = (skip: boolean = false): void => {
     this.setAnswer();
-    console.log(this.userAnswers);
-
+    //check if answers have been choosed
+    if (!skip) {
+      let allAnswerd: boolean = this.userAnswers.every((ans) => ans > 0)
+      if (!allAnswerd)
+        if (!confirm("Are you sure?\nThere are some questions has not be answered."))
+          return;
+    }
+    this.Getresult()
     this.start = false
+    this.finish = true;
   }
   next() {
     this.setAnswer();
     this.currentQ++
     //choose radio button
     if (!(this.userAnswers[this.currentQ] == 0))
-    this.currentA = this.userAnswers[this.currentQ]
+      this.currentA = this.userAnswers[this.currentQ]
 
   }
 
@@ -57,4 +80,7 @@ export class AppComponent {
 
   }
 }
-
+export interface IUserData {
+  name: string,
+  email: string
+}

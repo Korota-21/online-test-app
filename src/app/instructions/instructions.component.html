@@ -5,11 +5,31 @@
         </p>
         <ul>
             <li>The test has a timer</li>
-            <li>The timer will start when you start the test every question has 1 minute to be answered</li>
-            <li>When you are ready click start</li>
+            <li>The timer will start when you start </li>
+            <li>The test have {{questionNum}} question</li>
+            <li>Enter you <b>name</b> and <b>email</b> before you start</li>
         </ul>
+        <form (ngSubmit)="startfun(name.value,email.value)" class="col-6 col-md-2">
+            <div class=" form-group ">
+                <label for="name ">Name</label><br>
+                <input #name="ngModel" required minlength="2" type="text" name="name" class="form-control" placeholder="name" ngModel>
+                <div *ngIf="name.touched && name.invalid " class="alert alert-danger ">
+                    <p *ngIf="name.errors?.['required'] ">Name Required!!</p>
+                </div>
+            </div>
+            <pre></pre>
+            <div class="form-group ">
+                <label for="email ">Email</label><br>
+                <input required type="text" name="email" class="form-control " #email="ngModel" placeholder="name@example.com " ngModel>
+                <div *ngIf="email.touched && email.invalid " class="alert alert-danger ">
+                    <p *ngIf="email.errors?.['required'] ">Email Required!!</p>
+                </div>
+
+            </div>
+            <pre></pre> {{name.value}} {{email.value}}
+            <button class="btn btn-primary" type="submit">Start</button>
+        </form>
 
     </div>
-    <button type="button" (click)="startfun()" class="btn btn-primary">Start</button>
 
 </div>

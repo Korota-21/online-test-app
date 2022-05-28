@@ -8,7 +8,7 @@ import { Pipe, PipeTransform } from "@angular/core";
   styleUrls: ['./timer.component.css']
 })
 export class TimerComponent implements OnInit, OnDestroy {
-  @Input() endFun!: () => void;
+  @Input() endFun!: (skip: boolean) => void;
 
   countDown!: Subscription;
   teststart = false;
@@ -25,9 +25,10 @@ export class TimerComponent implements OnInit, OnDestroy {
   }
   count() {
     this.counter--
-    if(this.counter<0)
-    this.endFun();
-
+    if (this.counter < 0) {
+      this.endFun(true);
+      this.countDown.unsubscribe()
+    }
   }
   ngOnDestroy() {
     this.countDown != null;

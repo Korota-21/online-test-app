@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-instructions',
@@ -6,7 +6,8 @@ import { Component, OnInit,Input } from '@angular/core';
   styleUrls: ['./instructions.component.css']
 })
 export class InstructionsComponent implements OnInit {
-  @Input() startfun!: () => void;
+  @Input() startfun!: (name: string, email: string) => void;
+  @Input() questionNum!:number;
   constructor() { }
 
   ngOnInit(): void {

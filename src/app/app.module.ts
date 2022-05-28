@@ -19,9 +19,9 @@ import { FormatTimePipe, TimerComponent } from './timer/timer.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [HeaderComponent],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
