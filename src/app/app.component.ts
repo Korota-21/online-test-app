@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IQuestion, Test } from './Test';
+import { IQuestion } from "./interfaces/IQuestion";
+import { IUserData } from './interfaces/IUserData';
+import { TestService } from './services/test.service';
 
 
 @Component({
@@ -20,13 +22,10 @@ export class AppComponent {
     name: "",
     email: ""
   }
-  constructor() {
-    let test = new Test();
-    this.questions = test.getQuestions();
+  constructor(private _testService: TestService) {
   }
   ngOnInit(): void {
-    // this.startTest()
-    // this.endTest(true)
+    this.questions = this._testService.getQuestions();
   }
   Getresult() {
     let result = 0;
@@ -80,7 +79,4 @@ export class AppComponent {
 
   }
 }
-export interface IUserData {
-  name: string,
-  email: string
-}
+

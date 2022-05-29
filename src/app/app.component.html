@@ -38,11 +38,11 @@
                     </div>
                     <div class="container-fluid">
                         <div class="row row-cols-auto">
-                            <div class="col"> <button *ngIf="currentQ<questions.length-1" (click)="next()" class="btn btn-primary">Next</button>
+                            <div *ngIf="currentQ<questions.length-1" class="col"> <button (click)="next()" class="btn btn-primary">Next</button>
                             </div>
-                            <div class="col"> <button *ngIf="currentQ==questions.length-1" type="button" (click)="endTest()" class="btn btn-dark">Finish</button>
+                            <div *ngIf="currentQ==questions.length-1" class="col"> <button type="button" (click)="endTest()" class="btn btn-dark">Finish</button>
                             </div>
-                            <div class="col"> <button *ngIf="currentQ>0" (click)="previous()" class="btn btn-secondary">Previous</button>
+                            <div *ngIf="currentQ>0" class="col"> <button (click)="previous()" class="btn btn-secondary">Previous</button>
                             </div>
 
 

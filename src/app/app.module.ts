@@ -3,10 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { InstructionsComponent } from './instructions/instructions.component';
-import { FormatTimePipe, TimerComponent } from './timer/timer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { InstructionsComponent } from './components/instructions/instructions.component';
+import { FormatTimePipe, TimerComponent } from './components/timer/timer.component';
 
 @NgModule({
   declarations: [
