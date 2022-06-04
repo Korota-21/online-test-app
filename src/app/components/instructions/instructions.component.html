@@ -9,27 +9,37 @@
             <li>The test have {{questionNum}} question</li>
             <li>Enter you <b>name</b> and <b>email</b> before you start</li>
         </ul>
-        <form (ngSubmit)="startfun(name.value,email.value)" class="col-6 col-md-2">
-            <div class=" form-group ">
-                <label for="name ">Name</label><br>
-                <input #name="ngModel" required minlength="2" type="text" name="name" class="form-control" placeholder="name" ngModel>
-                <div *ngIf="name.touched && name.invalid " class="alert alert-danger ">
-                    <p *ngIf="name.errors?.['required'] ">Name Required!!</p>
-                </div>
-            </div>
-            <pre></pre>
-            <div class="form-group ">
-                <label for="email ">Email</label><br>
-                <input required type="text" name="email" class="form-control " #email="ngModel" placeholder="name@example.com " ngModel>
-                <div *ngIf="email.touched && email.invalid " class="alert alert-danger ">
-                    <p *ngIf="email.errors?.['required'] ">Email Required!!</p>
-                </div>
+        <form #userForm="ngForm" (ngSubmit)="startfun(name.value,email.value)" class="col-6 col-md-3">
+            <div [hidden]="userForm.submitted">
+                <div class="cross-validation">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required minlength="4" appForbiddenName="bob" [(ngModel)]="user.name" #name="ngModel" />
 
+                        <div *ngIf="name.invalid && name.touched" class="alert alert-danger ">
+                            <div *ngIf="name.errors?.['required']">Name is required.</div>
+                            <div *ngIf="name.errors?.['minlength']">
+                                Name must be at least 4 characters long.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">email</label>
+                        <input type="email" id="email" class="form-control" name="email" #email="ngModel" placeholder="name@example.com " required [(ngModel)]="user.email" />
+                        <div *ngIf="email.pending">Validating...</div>
+                        <div *ngIf="email.invalid && name.touched" class="alert alert-danger">
+                            <div *ngIf="name.errors?.['required']">Email is required.</div>
+
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Submit</button>
             </div>
-            <pre></pre>
-            <button class="btn btn-primary" type="submit">Start</button>
+
+
         </form>
-
     </div>
 
 </div>
