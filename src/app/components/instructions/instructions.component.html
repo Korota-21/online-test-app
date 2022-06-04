@@ -14,7 +14,7 @@
                 <div class="cross-validation">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" id="name" name="name" class="form-control" required minlength="4" appForbiddenName="bob" [(ngModel)]="user.name" #name="ngModel" />
+                        <input type="text" id="name" name="name" class="form-control" required minlength="4" placeholder="name" [(ngModel)]="user.name" #name="ngModel" />
 
                         <div *ngIf="name.invalid && name.touched" class="alert alert-danger ">
                             <div *ngIf="name.errors?.['required']">Name is required.</div>
