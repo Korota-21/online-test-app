@@ -1,0 +1,43 @@
+<form>
+    <div>
+        <h2>Q{{currentQ+1}}- {{questions[currentQ].question}}</h2>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" [value]="1" name="a" [(ngModel)]="currentA" id="a1">
+            <label class="form-check-label" for="a1">
+      {{questions[currentQ].answer1}}
+ </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label" for="a2">
+          <input class="form-check-input" type="radio" [value]="2" name="a" [(ngModel)]="currentA" id="a2">
+      {{questions[currentQ].answer2}}
+ </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" [value]="3" name="a" [(ngModel)]="currentA" id="a3">
+            <label class="form-check-label" for="a3">
+      {{questions[currentQ].answer3}}
+ </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" [value]="4" name="a" [(ngModel)]="currentA" id="a4">
+            <label class="form-check-label" for="a4">
+      {{questions[currentQ].answer4}}
+ </label>
+        </div>
+        <div class="container-fluid">
+            <div class="row row-cols-auto">
+                <div *ngIf="currentQ<questions.length-1" class="col">
+                    <button type="button" (click)="next()" class="btn btn-primary">Next</button>
+                </div>
+                <div *ngIf="currentQ==questions.length-1" class="col">
+                    <button type="button" (click)="endTest()" class="btn btn-dark">Finish</button>
+                </div>
+                <div *ngIf="currentQ>0" class="col">
+                    <button type="button" (click)="previous()" class="btn btn-secondary">Previous</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>

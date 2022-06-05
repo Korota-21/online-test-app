@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { InstructionsComponent } from './components/instructions/instructions.component';
 import { FormatTimePipe, TimerComponent } from './components/timer/timer.component';
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FormatTimePipe, TimerComponent } from './components/timer/timer.compone
     InstructionsComponent,
     FormatTimePipe,
     TimerComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,
