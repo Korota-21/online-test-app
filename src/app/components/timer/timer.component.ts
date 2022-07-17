@@ -25,13 +25,16 @@ export class TimerComponent implements OnInit, OnDestroy {
   }
   count() {
     this.counter--
+    console.log(this.counter);
+
     if (this.counter < 0) {
       this.endFun(true);
-      this.countDown.unsubscribe()
     }
   }
   ngOnDestroy() {
-    this.countDown != null;
+    console.log("destroy");
+
+    this.countDown.unsubscribe()
   }
 }
 @Pipe({

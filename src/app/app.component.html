@@ -1,7 +1,11 @@
-<app-header [start]="start" [endFun]="endTest">
+<app-header [start]="start">
+    <div *ngIf="start">
+
+        <app-timer [endFun]="endTest"></app-timer>
+    </div>
 </app-header>
 
-<div class="container py-4">
+<div class="container">
     <div>
         <div *ngIf="start; then testBlock; else instructionsBlock"></div>
         <ng-template #instructionsBlock>

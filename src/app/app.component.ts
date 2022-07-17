@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { TestComponent } from './components/test/test.component';
+import { TimerComponent } from './components/timer/timer.component';
 import { IQuestion } from "./interfaces/IQuestion";
 import { IUserData } from './interfaces/IUserData';
 import { TestService } from './services/test.service';
@@ -19,6 +21,7 @@ export class AppComponent {
     name: "",
     email: ""
   }
+  @ViewChild(TestComponent) testComponent!:TestComponent;
   constructor(private _testService: TestService) {
   }
   ngOnInit(): void {
@@ -32,6 +35,7 @@ export class AppComponent {
   updateResult(r: any) {
     this.result = r
   }
+
   endTest = (): void => {
     this.start = false
     this.finish = true;

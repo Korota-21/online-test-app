@@ -6,8 +6,6 @@
         </div>
 
         <!-- Right Side Of Navbar -->
-        <div *ngIf="start">
-            <app-timer [endFun]="endFun"></app-timer>
-        </div>
+        <ng-content></ng-content>
     </div>
 </nav>
