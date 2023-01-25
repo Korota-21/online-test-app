@@ -4,10 +4,10 @@
         <p>Some rules and point that the user should know before start the test.
         </p>
         <ul>
-            <li>You have 10 min</li>
+            <li>You have 10 mins</li>
             <li>The timer will start when you click start</li>
-            <li>The test have {{questionNum}} question</li>
-            <li>Enter you <b>name</b> and <b>email</b> before you start</li>
+            <li>The test have {{questionNum}} questions</li>
+            <li>Enter your <b>name</b> and <b>email</b> before you start</li>
         </ul>
         <form #userForm="ngForm" (ngSubmit)="startfun(name.value,email.value)" class="col-6 col-md-3">
             <div [hidden]="userForm.submitted">
@@ -26,7 +26,7 @@
 
                     <div class="form-group">
                         <label for="email">email</label>
-                        <input type="email" id="email" class="form-control" name="email" #email="ngModel" placeholder="name@example.com " required [(ngModel)]="user.email" />
+                        <input type="email" id="email" class="form-control" name="email" #email="ngModel" placeholder="name@example.com" required [(ngModel)]="user.email" />
                         <div *ngIf="email.pending">Validating...</div>
                         <div *ngIf="email.invalid && name.touched" class="alert alert-danger">
                             <div *ngIf="name.errors?.['required']">Email is required.</div>
